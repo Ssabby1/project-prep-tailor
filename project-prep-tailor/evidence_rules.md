@@ -8,7 +8,7 @@ Use these labels in repository explanations:
 
 ### `[Repo Fact]`
 
-The statement is directly supported by inspected repository evidence. Cite `path::symbol` and a reliable line or range when available. State whether runtime behavior was observed or only statically wired when that distinction matters.
+The statement is directly supported by inspected repository evidence. Cite `path::symbol` and a reliable line or range when available. A static repo fact may prove that code exists, imports, registers, or calls another symbol; it does not automatically prove the edge executed at runtime. State `Static`, `Test`, or `Runtime` evidence when the distinction matters, and use `[Repo Fact — Runtime Confirmed]` only when actual runtime behavior is sufficiently supported.
 
 ### `[Inference]`
 

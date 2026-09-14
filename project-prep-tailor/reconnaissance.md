@@ -15,6 +15,20 @@ Identify from repository evidence:
 
 Use available search, symbol navigation, manifests, configuration, tests, and git context. Do not add a parser, database, or dependency-graph service for ordinary reconnaissance.
 
+## Progressive Repository Scoping
+
+First determine whether the target is a large repository or monorepo and what the user is trying to learn, trace, prepare, modify, or debug. Do not initially inventory every package, README, source tree, service, example, or legacy area.
+
+For a large repository:
+
+1. identify the relevant subproject, package, service, or feature boundary;
+2. inspect its manifests, main entry point, key configuration, high-signal implementation files, and tests related to the representative flow;
+3. build a **Provisional Repository Map** for that scope;
+4. trace the representative runtime flow within and across only the boundaries it actually reaches;
+5. expand to another package or service only when an evidenced dependency, unresolved flow edge, or user goal requires it.
+
+State explicitly that a provisional map covers the current goal and is not evidence that the entire repository has been analyzed. If the user's target is broad or unstated, infer a safe initial scope from the requested feature or most representative entry point and disclose that choice; ask only when different scopes would materially change the work.
+
 ## Classify
 
 Classify only the meaningful areas:
@@ -39,6 +53,8 @@ Present a compact map such as:
 
 Include the project type, stack, likely runtime, key entry points, central data/storage, external integrations, test/runtime evidence, and important unknowns. Use file paths and symbols where available. Avoid listing every file.
 
+For a large repository, add the current scope, excluded/deferred areas, and the condition that would cause scope expansion. Do not build a complete dependency graph unless the task genuinely requires one.
+
 ## Exit Condition
 
-Reconnaissance is sufficient when the agent can select a representative real flow, name the evidence-backed entry points, identify the core areas, and state what should be deferred. Resolve critical ambiguity before detailed teaching; record non-critical unknowns instead of blocking progress.
+Reconnaissance is sufficient when the agent can select a representative real flow, name the evidence-backed entry points, identify the core areas, and state what should be deferred. In a large repository, sufficiency applies to the disclosed current scope. Resolve critical ambiguity before detailed teaching; record non-critical unknowns instead of blocking progress.
