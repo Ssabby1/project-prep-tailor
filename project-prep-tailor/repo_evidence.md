@@ -1,79 +1,54 @@
 # Repository Evidence
 
-When a repository is available, inspect it before writing the final project prep document. Prefer high-signal evidence over broad listing.
+Inspect repository evidence before teaching project-specific behavior or preparing code-level claims. Prefer high-signal call paths over broad file listing.
 
-## High-Signal Files
+## High-Signal Evidence
 
 Prioritize:
-- `README`, project docs, architecture docs, design notes
-- package manifests and dependency files
-- source entry points
-- API route definitions
-- service, controller, model, schema, repository, DAO, workflow, or agent files
-- database migrations or schema files
-- config files and environment examples
-- tests
-- Docker, compose, CI, deployment, and runtime files
 
-Down-rank:
-- generated files
-- dependency directories
-- build artifacts
-- caches
-- minified assets
-- unrelated images and static files
-- lockfiles unless dependency confirmation is needed
+- README, architecture notes, design documents, and runnable examples;
+- package manifests, runtime configuration, and environment examples;
+- executable, API, UI, worker, event, and CLI entry points;
+- routes, controllers, services, workflows, agents, tools, models, schemas, repositories, and migrations;
+- registrations, dependency injection, callbacks, queues, and external-client wiring;
+- tests that execute representative behavior;
+- Docker, compose, CI, deployment, logging, and observability files when relevant.
 
-## Repository Review Steps
+Down-rank generated, vendored, dependency, build, cache, minified, lock, unrelated static, and boilerplate files unless needed to verify a specific fact.
 
-1. Identify project type and likely runtime.
-2. Identify entry points.
-3. Identify major directories and module boundaries.
-4. Identify external dependencies and whether they are actually wired into code.
-5. Trace core user or system flows when possible.
-6. Identify data models, storage, API boundaries, background jobs, retrieval flows, or agent workflows where relevant.
-7. Check tests, deployment, and configuration evidence.
-8. Record unknowns and weak evidence.
+## Inspection Sequence
 
-## Output Evidence
+1. Establish scope: repository root, relevant revision if known, available inputs, and important inaccessible components.
+2. Perform the high-signal scan in [reconnaissance.md](reconnaissance.md).
+3. Identify entry points, central data shapes, storage, external boundaries, tests, and runtime setup.
+4. Select and trace a representative behavior using [runtime_flow.md](runtime_flow.md).
+5. Follow actual references, calls, registrations, and transformations; distinguish installed dependencies from wired capabilities.
+6. Record contradictions, dynamic edges, missing files, dead or partial implementations, and unverified runtime assumptions.
+7. Use the resulting evidence to build a learning roadmap, scenario preparation, or requested export.
 
-When writing repository structure, include only directories that help understanding.
+Run or test code only when it materially resolves an important uncertainty and remains within the user's request and permissions. Static evidence alone must not be described as observed runtime behavior.
 
-When naming core files, explain why each file matters:
+## Evidence Anchors
 
-| File | Role | Evidence Level | Why It Matters |
-|---|---|---|---|
+For important repository-specific statements, prefer:
 
-When describing flows, separate confirmed flow from inferred flow:
-- confirmed by route/service/model code
-- inferred from naming or partial wiring
-- unknown because files are missing or not inspected
+```text
+path/to/file.ext::SymbolName (reliable line or range when available)
+```
 
-## Avoid Overclaiming
+Use the smallest useful source excerpt. Line numbers are optional when tools cannot obtain them reliably; file and symbol are still expected when possible.
 
-Do not claim:
-- a service is production-grade because Docker exists
-- a project has robust tests because a test framework exists
-- a full agent workflow exists because an LLM SDK is installed
-- a system is scalable because it uses a common backend framework
-- a feature is complete because a directory exists
+When describing a call path, verify each edge. A matching name, import, dependency, comment, or directory is not proof that the edge executes.
 
-## Reading Route
+## Unknowns And Negative Evidence
 
-A useful reading route should tell the user:
-- where to start
-- what to read next
-- what each module teaches
-- which files are core
-- which files are optional
-- what to skip initially
+State what was searched and not found when absence matters, while avoiding claims that uninspected or inaccessible systems do not exist. Examples:
 
-For `from-zero`, include a learning sequence:
-1. project overview
-2. runtime setup or entry point
-3. request or workflow flow
-4. data model
-5. core business logic
-6. integrations
-7. tests and deployment
-8. extension exercises
+- “No call site was found in the inspected source” is safer than “this dependency is unused.”
+- “The repository does not provide deployment evidence” is safer than “the project was never deployed.”
+
+If the repository cannot establish a full flow, show the longest confirmed segment and the evidence needed to close the gap. Do not fabricate a bridge.
+
+## Teaching And Review Output
+
+Use [reconnaissance.md](reconnaissance.md) for the Repository Map and [evidence_rules.md](evidence_rules.md) for statement labels. In tutor mode, reveal evidence in bounded units. In exports, consolidate core files and evidence matrices without turning the document into an exhaustive inventory.

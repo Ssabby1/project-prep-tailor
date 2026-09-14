@@ -67,3 +67,5 @@ Do not exaggerate:
 - deployment status
 
 If the project is AI-assisted, include honest explanation and understanding checks.
+
+When the user needs to learn the implementation rather than only assemble a defense deliverable, establish the representative runtime flow and teach the relevant modules before producing polished defense wording.

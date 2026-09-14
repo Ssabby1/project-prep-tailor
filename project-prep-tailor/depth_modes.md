@@ -1,106 +1,62 @@
-# Depth Modes
+# Session And Depth Modes
 
-Use depth to control how much detail the final Markdown document contains. Default depth is `standard`.
+Mode controls the interaction; export depth controls document detail. Do not let a request for deep analysis turn the first self-learning response into a giant document.
 
-## quick
+## Quick Tutor
 
-Use when:
-- the user has little time before an interview, defense, or review
-- the user asks for a quick prep version
+Use when the user explicitly has little time or asks for a fast understanding.
 
-Output characteristics:
-- concise but still evidence-labeled
-- focus on the most likely questions and highest-risk claims
-- avoid long module walkthroughs
+Cover:
 
-Include:
-- project one-liner
-- top evidence sources
-- 3 to 5 strongest project points
-- 5 to 10 likely questions
-- claims that should not be actively emphasized
-- 30-second explanation
-- final checklist
+- project purpose and boundary;
+- concise Repository Map and 5–10 core files;
+- architecture and key entry points;
+- one representative end-to-end runtime flow;
+- major design decisions, limits, and debugging points;
+- a small number of understanding checks;
+- evidence-backed interview talking points after the checks.
 
-## standard
+Compress breadth, not evidence discipline. A quick session may combine closely related units, but should still let the user answer at least one meaningful question.
 
-Use by default.
+## Deep Tutor
 
-Output characteristics:
-- detailed enough for Obsidian reading
-- covers repo structure, modules, evidence, questions, risks, and learning notes
-- avoids unnecessary exhaustive file-by-file listing
+Default for `self-learning`, `from-zero`, “吃透”, unfamiliar AI-assisted projects, and detailed learning requests.
 
-Include:
-- input and evidence scope
-- project background and goals
-- tech stack and capability map
-- repository structure and reading route
-- core files and entry points
-- architecture, interface flow, and data flow when evidenced
-- core module review
-- scenario-specific preparation
-- evidence matrix
-- question bank
-- study gaps
-- AI-assisted project understanding check
-- final checklist
+Use the full tutor loop:
 
-## deep
+- reconnaissance and architecture;
+- representative runtime flow before directory-by-directory study;
+- dependency-based roadmap;
+- bounded module lessons and real code walkthroughs;
+- project-specific concepts and tradeoffs;
+- prediction, navigation, explain-back, modification, and debugging exercises;
+- mastery tracking;
+- interview preparation only after relevant understanding is demonstrated.
 
-Use when:
-- the user is preparing for an important technical interview
-- the user needs thesis defense depth
-- the user wants to understand design choices and implementation details
-- the repo has enough evidence for deeper analysis
+## Interview
 
-Output characteristics:
-- module-level and flow-level analysis
-- stronger emphasis on tradeoffs, alternatives, testing, deployment, and failure modes
-- includes deeper questions and answer strategies
+Use for explicit interview preparation. This is an interactive mock interview, not a static standard-answer generator.
 
-Include:
-- everything in `standard`
-- expanded architecture and data-flow walkthrough
-- module-by-module implementation notes
-- technical tradeoffs and alternatives
-- dependency and integration analysis
-- testing and validation review
-- deployment or runtime review when evidenced
-- edge cases and failure modes
-- advanced question bank
-- claim-risk table with conservative wording
+Begin with a concise evidence baseline and representative runtime flow. Then ask one question at a time, assess the user's answer against code and claim boundaries, teach gaps, request a revised answer, and continue with deeper follow-ups. Read [interview_mode.md](interview_mode.md).
 
-## from-zero
+## Compatibility Aliases
 
-Use when:
-- the user says they do not understand the project
-- the project was AI-assisted or vibecoded and the user needs to truly learn it
-- the user wants onboarding from scratch
-- the user asks for a learning path rather than only interview notes
+Preserve existing prompts as follows:
 
-Output characteristics:
-- teaching-oriented
-- explains concepts before modules
-- gives a reading order and hands-on tasks
-- marks what the user must be able to explain personally
+| Existing value | v2 behavior |
+|---|---|
+| `quick` | `Quick Tutor` for learning/interview; concise export when explicitly requested |
+| `standard` | Moderate review/export depth; for self-learning, use interactive tutoring rather than document-first behavior |
+| `deep` | `Deep Tutor` or deep scenario review/export |
+| `from-zero` | `Deep Tutor` with plain-language prerequisites and more frequent understanding checks |
 
-Include:
-- project mental model in plain language
-- prerequisite concept map
-- recommended repository reading order
-- module-by-module learning route
-- key terms and concepts
-- hands-on exercises
-- self-check questions
-- "can I explain this?" checklist
-- AI-assisted understanding checkpoints
-- list of topics not to claim before understanding
+The existing scenarios `repo-review`, `self-learning`, `interview`, `thesis-defense`, and `company-review` remain valid.
 
-## Depth Selection
+## Selection
 
-If the user does not specify depth:
-- use `standard`
-- use `from-zero` if the user asks to learn the project from scratch
-- use `deep` if the user asks for very detailed technical review or defense preparation
-- use `quick` only if the user asks for fast prep or a short version
+- Infer mode when the request is clear; do not pause for confirmation.
+- Default self-learning/from-zero to `Deep Tutor`.
+- Default explicit interview preparation to `Interview`.
+- Use `Quick Tutor` only for explicit speed or brevity.
+- For repo review, defense, and company review, follow the requested deliverable; add tutoring when the user asks to learn or shows a material understanding gap.
+- Treat Markdown/Obsidian as an export format, not a session mode.

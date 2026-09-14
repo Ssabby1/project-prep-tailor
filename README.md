@@ -2,110 +2,83 @@
 
 [中文说明](README.zh-CN.md)
 
-`project-prep-tailor` is a lite, evidence-first skill for project review, learning, interview prep, thesis defense prep, company review prep, and claim-risk audit.
+`project-prep-tailor` v2 is a repository-grounded interactive project tutor and preparation skill. It helps users master a real codebase first, then prepare accurate interview, resume/JD, thesis-defense, company-review, or onboarding material.
 
-It generates detailed Obsidian-friendly Markdown documents from a project repository and optional context such as a learning goal, resume project text, job description, defense requirement, or company review background.
+## What Changed In v2
 
-## Positioning
-
-This project is not a client, model runner, or API-based CLI. It is a reusable skill and prompt package for Codex, Claude Code, Cursor, and similar AI coding tools.
-
-The core value is repo-based understanding:
-
-- inspect repository evidence
-- explain project structure and flows
-- map resume or JD claims to evidence
-- prepare interview, defense, company review, or self-learning notes
-- identify unsupported or risky claims
-- handle AI-assisted / vibecoding projects honestly
-
-## Relationship To repo-to-resume-tailor
-
-`repo-to-resume-tailor`:
+For self-learning and from-zero requests, the default is no longer a complete Markdown report. The skill now follows:
 
 ```text
-repository + target role / JD -> resume-ready project description
+Repository reconnaissance → architecture → representative runtime flow
+→ dependency-based roadmap → module tutoring → active checks
+→ small modification/debugging tasks → interview preparation → optional export
 ```
 
-`project-prep-tailor`:
+It uses three provenance labels for project explanations:
 
-```text
-repository + optional context -> project prep, learning, interview, defense, or review document
-```
+- `[Repo Fact]`: directly verified in source, cited with file and symbol;
+- `[Inference]`: a reasoned but unproven interpretation;
+- `[General Concept]`: transferable knowledge tied to the inspected code.
 
-The first writes resume text. This skill helps the user understand and explain the project.
+Existing claim-strength labels and anti-fabrication rules remain in place for resume, impact, ownership, maturity, and production claims.
 
-## Repo-First Modes
+## Goals
 
-Full project prep requires a repository:
+- **Project Mastery:** purpose, architecture, entry points, runtime flow, modules, dependencies, AI/RAG/agent/tool implementation, failure modes, modifications, and debugging.
+- **Project Preparation:** interactive interview practice, JD alignment, resume claim audit, thesis defense, company review, and honest AI-assisted project explanations.
 
-- repo-only
-- repo + learning goal
-- repo + resume
-- repo + JD
-- repo + JD + resume
-- repo + thesis / defense requirement
-- repo + company context
+The core rule is: understand first, express second.
 
-No-repo fallback is claim-audit-only and must not generate repository structure, core files, data flow, API flow, module implementation details, code reading routes, or repository evidence matrices.
+## Modes
 
-## Scenarios
+- `Quick Tutor`: fast mental model, Repository Map, core files, one real flow, key decisions, limits, and checks.
+- `Deep Tutor`: progressive module learning, code walkthroughs, exercises, and mastery tracking.
+- `Interview`: one-question-at-a-time mock interview with source checks and Tutor Mode fallback.
 
-- interview
-- thesis-defense
-- company-review
-- self-learning
-- repo-review
+Existing `quick`, `standard`, `deep`, and `from-zero` prompts remain compatible. `self-learning`/`from-zero` defaults to Deep Tutor; interview requests default to interactive Interview mode.
 
-## Depth
+## Inputs And Scenarios
 
-- quick
-- standard
-- deep
-- from-zero
+Repository-grounded modes still support:
 
-Default output is `standard` depth and Obsidian-friendly Markdown.
+- repo-only;
+- repo + learning goal;
+- repo + resume;
+- repo + JD;
+- repo + JD + resume;
+- repo + thesis/defense requirement;
+- repo + company context.
 
-## MVP Scope
+Scenarios remain `repo-review`, `self-learning`, `interview`, `thesis-defense`, and `company-review`.
 
-This lite MVP intentionally does not include:
-
-- client UI
-- API model calls
-- API key configuration
-- complex workflow CLI
-- installer CLI
-- `pyproject.toml`
-- `install.py`
-- `src/`
-
-An install-only CLI may be added later as a roadmap item.
+Without a repository, the skill is limited to claim audit and conservative wording. It must not invent source structure, runtime flows, implementation, maturity, or personal contribution.
 
 ## Usage
 
-In a repository:
+Interactive learning:
 
 ```text
-Use $project-prep-tailor to generate a standard repo-review document for this repository.
+Use $project-prep-tailor to teach me this repository from zero.
+Trace one real request first, then teach one module at a time and test my understanding.
+Learning goal: understand the backend and agent tool flow.
 ```
 
-Interview prep:
+Interview preparation:
 
 ```text
-Use $project-prep-tailor to prepare this project for interview.
-Scenario: interview
-Depth: deep
-JD:
-...
-Resume project text:
-...
+Use $project-prep-tailor to run an evidence-grounded mock interview for this repository.
+JD: ...
+Resume project text: ...
 ```
 
-Self-learning:
+Export after learning:
 
 ```text
-Use $project-prep-tailor to help me learn this repository from zero.
-Scenario: self-learning
-Depth: from-zero
-Learning goal: understand the backend API flow.
+Export our current project learning state as Obsidian-friendly Markdown, including the runtime flow, source anchors, mastery summary, and remaining gaps.
 ```
+
+See [docs/usage.zh-CN.md](docs/usage.zh-CN.md) and the tool-specific docs for more examples.
+
+## Scope
+
+This remains a lightweight skill/prompt package. v2 adds workflow guidance, not a parser, database, persistent learning-state service, Web UI, or model-calling CLI.

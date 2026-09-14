@@ -1,161 +1,66 @@
-# Output Contract
+# Export And Output Contract
 
-Default output is detailed Markdown suitable for Obsidian. Do not output a short outline unless the user explicitly asks for `quick` depth.
+Interactive learning is the primary product for `self-learning` and `from-zero`. Markdown or Obsidian output is an export produced when the user asks for notes, a project review, a final study document, a review sheet, or when a completed learning cycle makes a summary useful.
 
-## Default Output Settings
+Do not silently turn the first tutor response into a full document. Conversational teaching may use compact Markdown without following the export structure.
 
-- format: `obsidian-markdown`
-- depth: `standard`
-- scenario: infer from user request, default to `repo-review`
-- language: follow the user's language, default to Simplified Chinese when the user writes Chinese
-- evidence style: include labels and tables where useful
+## Defaults
 
-## Full Project Prep Output
+- format: follow the user; for requested notes, default to Obsidian-friendly Markdown;
+- language: follow the user, defaulting to Simplified Chinese for Chinese requests;
+- export depth: `standard` unless the user requests quick or deep;
+- evidence: preserve provenance labels, claim-strength labels, source anchors, uncertainties, and user mastery gaps;
+- scenario: infer from the request.
 
-Full output is allowed only when repository evidence is available.
+## Learning Export
 
-A full project prep document may include:
-- project background
-- repository structure
-- core files and entry points
-- tech stack
-- architecture and data flow
-- API or interface flow when evidence exists
-- core module review
-- implementation walkthrough
-- evidence matrix
-- JD / resume / repo mapping when applicable
-- high-frequency Q&A
-- learning route
-- thesis defense prep
-- company review prep
-- risk boundaries
-- AI-assisted project transparency notes
-
-## Default Full Markdown Structure
-
-Use this structure for `standard` full mode. Adjust sections for the selected scenario.
+Include the useful accumulated state, not generic filler:
 
 ```markdown
-# 项目复盘与准备文档
+# 项目学习与准备笔记
 
-## 0. 输入与证据范围
-
-## 1. 项目一句话理解
-
-## 2. 项目背景、目标与非目标
-
-## 3. 技术栈与能力地图
-
-## 4. 仓库结构与阅读路线
-
-## 5. 核心文件与入口
-
-## 6. 架构、接口流与数据流
-
-## 7. 核心模块复盘
-
-## 8. 场景化准备
-
-## 9. Claims 与证据矩阵
-
-## 10. 高频问题库
-
-## 11. 需要补学的知识点
-
-## 12. AI 辅助 / vibecoding 理解检查
-
-## 13. 不建议主动强调的内容
-
-## 14. 最终复习 checklist
+## 0. 输入、仓库范围与证据边界
+## 1. Project Mental Model
+## 2. Architecture 与核心 Entry Points
+## 3. Repository Map 与学习优先级
+## 4. Representative End-to-End Runtime Flow
+## 5. 核心模块与关键源码
+## 6. 设计取舍、失败场景与 Debug 路线
+## 7. Mastery Summary
+## 8. Key Source References
+## 9. Remaining Knowledge Gaps
+## 10. 下一步练习与 Interview Readiness
 ```
 
-## Scenario Sections
+Include only taught or inspected material. Distinguish what the user has demonstrated from what the assistant merely explained.
 
-For `interview`, include:
-- JD or role requirement analysis when available
-- resume claims analysis when available
-- project pitch: 30-second version and 2-minute version
-- technical deep-dive talking points
-- likely follow-up questions
-- conservative wording for weak claims
+## Preparation Exports
 
-For `thesis-defense`, include:
-- research or project problem definition
-- system design explanation
-- implementation method
-- testing or validation evidence
-- innovation boundary
-- defense questions and answer points
+Adapt rather than forcing every section:
 
-For `company-review`, include:
-- project background and scope
-- user's responsibility boundary when provided
-- delivery summary
-- technical decisions and tradeoffs
-- risks, blockers, and follow-up plan
-- unsupported business impact warnings
+- **Interview:** JD/resume/repo mapping, corrected user answer points, source anchors, follow-ups, claim risks, mastery summary, and remaining gaps. Add 30-second or 2-minute pitches only after understanding is demonstrated or clearly label them as drafts requiring verification.
+- **Thesis defense:** problem, method, repository implementation, representative flow, validation evidence, innovation boundary, limitations, likely questions, and unresolved gaps.
+- **Company review:** project scope, responsibility context, repository-supported delivery, decisions, blockers, risks, next steps, and business claims requiring company evidence.
+- **Repo review:** mental model, Repository Map, architecture, runtime flow, core modules, evidence matrix, risks, tests/operations, and onboarding route.
 
-For `self-learning`, include:
-- from-zero concept map
-- repository reading order
-- module-by-module study path
-- exercises and self-check questions
-- terms and prerequisites to learn first
+## Evidence Tables
 
-For `repo-review`, include:
-- neutral project summary
-- repo onboarding route
-- module and data-flow review
-- risks and unknowns
-- general question bank
+Use tables only when they improve scanning:
 
-## No-Repo Fallback Output
+| Claim | Source | Evidence Anchor | Evidence Level | Recommended Wording | Risk |
+|---|---|---|---|---|---|
 
-No-repo fallback output is intentionally limited. It may include only:
-- claims extracted from input text
-- claims that cannot be verified
-- likely follow-up questions
-- points that require repository verification
-- conservative wording suggestions
-- supplementary materials checklist
+| Module | Mastery State | Demonstrated Evidence | Remaining Gap | Next Step |
+|---|---|---|---|---|
 
-Every no-repo fallback document must include this warning near the top:
+## No-Repo Fallback
 
-> 当前文档为 no-repo fallback 版本，未读取项目仓库。以下内容只能基于用户提供的文本进行 claims 审查、追问准备和保守表达建议，不能视为代码级项目复盘或仓库证据分析。
+No-repo output is claim-audit-only and must place this warning near the top:
 
-## No-Repo Forbidden Sections
+> 当前文档为 no-repo fallback 版本，未读取项目仓库。以下内容只能基于用户提供的文本进行 claims 审查、追问准备和保守表达建议，不能视为代码级项目复盘、源码教学或仓库证据分析。
 
-No-repo fallback output must not include:
-- repository directory structure
-- core file list
-- code entry points
-- concrete request flow or data flow
-- API or interface flow
-- module implementation walkthrough
-- code reading route
-- repository evidence matrix
-- verified tech stack beyond what the text explicitly claims
-- confirmed architecture conclusions
-- confirmed deployment, testing, monitoring, or production-readiness claims
-- confirmed personal contribution or technical depth
+It may include only extracted claims, unverified claims, likely follow-ups, repository evidence needed, conservative wording, and a supplementary-materials checklist.
 
-## No-Repo Claim Labeling
+It must not invent repository structure, core files, entry points, runtime/data/API flows, module implementation, code-reading routes, repository evidence matrices, verified architecture, deployment/testing/monitoring maturity, technical depth, or personal contribution.
 
-All technical claims in no-repo fallback must use one of these labels:
-- `仅简历声称`
-- `仅用户背景声称`
-- `待仓库验证`
-- `不建议主动强调`
-- `可作为被动回答准备`
-
-Example:
-
-| Claim | Source | Verification Status | Advice |
-|---|---|---|---|
-| 实现 RAG 检索流程 | 简历文本 | 待仓库验证 | 未看到仓库前不要主动强调完整实现 |
-| 性能提升 40% | 简历文本 | 待仓库验证 | 需要 benchmark、日志或评估报告支持 |
-
-## Fallback To Full Mode
-
-If the user later provides a repository, switch from fallback mode to the appropriate full mode and regenerate the project prep document based on repository evidence.
+Use `仅简历声称`, `仅用户背景声称`, `待仓库验证`, `证据不足`, or `不应声称` as appropriate. If a repository later becomes available, switch to the matching full mode and begin with reconnaissance; do not treat the fallback text as evidence.

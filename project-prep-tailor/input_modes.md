@@ -1,12 +1,14 @@
 # Input Modes
 
-`project-prep-tailor` is repo-centered. A repository is required for complete project review, onboarding, learning, interview prep, thesis defense prep, and company review prep.
+`project-prep-tailor` is repo-centered. A repository is required for code-level review, tutoring, runtime tracing, implementation-grounded interview prep, thesis defense prep, and company review prep.
 
 No-repo modes are fallback only. They are claim-audit-only and cannot produce code-level project review.
 
+Input mode describes available evidence. It does not force a document. For `self-learning` and `from-zero`, use interactive tutoring by default and export only when requested or after a learning cycle.
+
 ## Full Project Prep Modes
 
-These modes may generate complete project preparation documents because they include repository evidence.
+These modes allow repository-grounded analysis, tutoring, preparation, and requested exports.
 
 ### 1. repo-only
 
@@ -19,17 +21,17 @@ Use when:
 - the user wants a general project review document
 - the user has no JD, resume, thesis, defense, company, or learning context yet
 
-Allowed output:
+Available behavior:
 - project background inferred from evidence
-- repository structure
+- Repository Map and priority classification
 - core files and entry points
 - tech stack
-- architecture and data flow
+- architecture and at least one representative runtime flow
 - core module review
 - implementation walkthrough
 - evidence matrix
 - learning route
-- question bank
+- active questions or an exported question bank
 - risk boundaries
 
 ### 2. repo + learning goal
@@ -43,13 +45,16 @@ Use when:
 - the user needs a module reading order and study plan
 - the user wants to understand only the parts relevant to a learning objective
 
-Allowed output:
+Default behavior:
 - all repo-only outputs
-- goal-oriented reading route
+- progressive interactive tutoring rather than an up-front complete document
+- goal-oriented roadmap based on runtime and dependencies
 - prerequisite concepts
-- hands-on learning tasks
-- self-check questions
+- one bounded module lesson at a time
+- active prediction, navigation, explain-back, modification, and debugging tasks
+- lightweight mastery tracking
 - modules to prioritize or skip
+- optional Markdown or Obsidian export
 
 ### 3. repo + resume
 
@@ -104,14 +109,15 @@ Use when:
 
 This is the primary technical interview prep mode.
 
-Allowed output:
+Available behavior:
 - all repo-only outputs
 - JD analysis
 - resume claim extraction
 - JD / resume / repo three-way matrix
-- 30-second and 2-minute project pitch
+- repository-grounded mock interview with answer evaluation and tutor fallback
+- 30-second and 2-minute project pitch after the relevant understanding is demonstrated
 - technical deep-dive talking points
-- high-frequency interview questions
+- adaptive follow-up questions
 - study checklist
 - risk and boundary language
 
@@ -230,5 +236,13 @@ Forbidden output:
 ## Mode Selection Rule
 
 If a repository exists, choose the most specific full mode that matches the provided context.
+
+Then route by intent:
+
+- self-learning or from-zero -> `Deep Tutor` by default;
+- explicit time pressure -> `Quick Tutor`;
+- interview preparation -> `Interview`, with Tutor Mode fallback for knowledge gaps;
+- explicit notes/report/export -> use the requested export contract;
+- repo-review, defense, or company review -> produce the requested review, adding tutoring only when learning is part of the goal.
 
 If no repository exists, use fallback only after warning the user. Fallback output must be visibly labeled as no-repo fallback and must not pretend to be a complete project review.

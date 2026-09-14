@@ -63,3 +63,5 @@ Include:
 - follow-up plan
 - questions the reviewer may ask
 - claims that need company-side evidence
+
+If the user cannot yet explain a claimed delivery or design decision, route that topic through repository-grounded tutoring before polishing it for the review.

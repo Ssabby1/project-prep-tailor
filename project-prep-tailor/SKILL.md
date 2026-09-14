@@ -1,86 +1,77 @@
 ---
 name: project-prep-tailor
-description: Evidence-first project review and preparation skill for repo-based onboarding, learning, interview prep, thesis defense prep, company review prep, and claim-risk audit. Use when the user wants to understand a project, prepare to explain it, align resume/JD/thesis/company context with repository evidence, or handle AI-assisted/vibecoding project claims honestly.
+description: Repository-grounded interactive project tutor and preparation system for codebase mastery, interview prep, resume/JD claim review, thesis defense, company review, and honest AI-assisted project learning. Use when the user wants to understand, trace, modify, debug, or accurately explain a real project; no-repo use is limited to claim audit.
 ---
 
 # Project Prep Tailor
 
 ## Purpose
 
-Generate detailed, evidence-first Markdown project preparation documents. Use this skill to help the user understand a project from repository evidence, prepare for interviews, thesis or course defense, company project review, internship conversion review, or self-learning.
+Help the user first understand a real repository and then explain it accurately. The primary experience for `self-learning` and `from-zero` requests is progressive, interactive tutoring—not an up-front long report. Markdown and Obsidian documents are exports produced when requested or after a learning/preparation cycle.
 
-Default output is detailed Obsidian-friendly Markdown, not a short outline.
+The skill has two linked goals:
 
-## Core Rule: Repo First
+- **Project Mastery:** understand purpose, architecture, entry points, runtime flows, modules, dependencies, design choices, limits, modification points, and debugging routes.
+- **Project Preparation:** use demonstrated understanding to prepare interviews, JD alignment, resume claims, thesis defense, company review, and AI-assisted project explanations.
 
-Full project prep requires a repository.
+Apply this invariant: **understand first, express second**. Do not turn an unproven understanding into polished talking points.
 
-A repository is available when:
-- the user provides a project path
-- the current working directory is the project repository to analyze
-- repository files are attached or visible in context
-- the user clearly identifies a repository that can be inspected
+## Repository Requirement
 
-If a repository is available, choose one full mode from [input_modes.md](input_modes.md):
-- repo-only
-- repo + learning goal
-- repo + resume
-- repo + JD
-- repo + JD + resume
-- repo + thesis / defense requirement
-- repo + company context
+A repository is available when the user gives a path, the current working directory is the target repository, or repository files are otherwise inspectable. Choose the most specific input mode from [input_modes.md](input_modes.md).
 
-If no repository is available, do not silently produce a full project review. First say:
+If no repository is available, do not imply code-level review. Warn that only no-repo claim audit is possible and follow the fallback limits in [input_modes.md](input_modes.md). Continue without a repository only when the user accepts the fallback or explicitly requests claim audit.
 
-> 当前缺少项目仓库，无法生成完整项目复盘文档。可以继续生成 no-repo fallback 文档，但只会包含 claims 审查、追问清单和保守话术；若需要完整项目学习文档，请提供项目仓库或在仓库目录中运行。
+## Route The Session
 
-Only continue in no-repo fallback if the user explicitly accepts it or the request clearly asks for claim audit only.
+Infer the route from the request; do not ask for ceremonial confirmation when the goal is clear.
 
-## Workflow
+- **Self-learning / from-zero / “help me understand this repo”:** use the interactive tutor workflow in [self_learning.md](self_learning.md). Default to `Deep Tutor`; use `Quick Tutor` for explicit time pressure.
+- **Interview preparation:** use [interview_mode.md](interview_mode.md). Establish repository grounding and at least one representative runtime flow before polished answers. If an answer exposes a gap, return to the relevant tutor unit.
+- **Repo review, thesis defense, or company review:** inspect the repository first, then apply [defense_prep.md](defense_prep.md) or [company_review_prep.md](company_review_prep.md) as relevant. Use interactive teaching when understanding is part of the request; otherwise produce the requested review or export.
+- **Resume and/or JD:** apply [resume_claims.md](resume_claims.md), [jd_analysis.md](jd_analysis.md), and repository evidence before making preparation claims.
+- **Export / notes / Obsidian / final review:** use [output_contract.md](output_contract.md). Export is an action, not the default first response in tutor mode.
 
-1. Identify available inputs: repository, resume project text, JD, learning goal, thesis or defense requirement, company context.
-2. Select the input mode using [input_modes.md](input_modes.md).
-3. Select the scenario: `interview`, `thesis-defense`, `company-review`, `self-learning`, or `repo-review`.
-4. Select depth using [depth_modes.md](depth_modes.md). Default is `standard`; use `from-zero` when the user wants to learn the project from scratch.
-5. Inspect repository evidence before writing when a repo is available. Follow [repo_evidence.md](repo_evidence.md).
-6. Apply evidence labels from [evidence_rules.md](evidence_rules.md).
-7. Apply scenario rules:
-   - JD and interview: [jd_analysis.md](jd_analysis.md), [resume_claims.md](resume_claims.md), [question_bank.md](question_bank.md)
-   - thesis or course defense: [defense_prep.md](defense_prep.md)
-   - company review: [company_review_prep.md](company_review_prep.md)
-   - self-learning: [self_learning.md](self_learning.md)
-8. Apply AI-assisted project rules from [ai_assisted_project.md](ai_assisted_project.md).
-9. Apply safety rules from [safety_rules.md](safety_rules.md).
-10. Produce the final Markdown document using [output_contract.md](output_contract.md).
+Use [depth_modes.md](depth_modes.md) for `Quick Tutor`, `Deep Tutor`, and `Interview` behavior. Preserve `standard`, `deep`, and `from-zero` as compatible aliases where users already specify them.
 
-## Evidence Discipline
+## Repository-Grounded Workflow
 
-Do not fabricate project capability, business metrics, performance gains, launch status, user scale, technical depth, or personal contribution.
+When a repository is available:
 
-If a claim is weak, label it. If a claim is unsupported, mark it as not recommended for active emphasis. If the project appears AI-assisted or vibecoded, help the user understand and explain the project honestly instead of disguising the development process.
+1. Identify inputs and select an input mode with [input_modes.md](input_modes.md).
+2. Inspect high-signal evidence using [repo_evidence.md](repo_evidence.md) and [evidence_rules.md](evidence_rules.md).
+3. Perform reconnaissance and present a concise Repository Map using [reconnaissance.md](reconnaissance.md).
+4. Build a plain-language project mental model, architecture view, and key entry points.
+5. Trace at least one representative end-to-end path using [runtime_flow.md](runtime_flow.md). Never substitute a generic architecture template for a verified call path.
+6. Create a dependency- and runtime-based learning roadmap; do not merely follow directory order.
+7. Teach one bounded module or concept at a time using [module_tutor.md](module_tutor.md).
+8. Add prediction, navigation, explain-back, modification, or debugging checks from [active_learning.md](active_learning.md). Let the user answer before revealing the solution.
+9. Update lightweight mastery status with [mastery_tracking.md](mastery_tracking.md), then choose the next unit from demonstrated gaps.
+10. Apply scenario-specific preparation only after the needed understanding is established. For AI-assisted work, also apply [ai_assisted_project.md](ai_assisted_project.md).
+11. Apply [safety_rules.md](safety_rules.md). Export with [output_contract.md](output_contract.md) only on request or at a natural completion point.
 
-## No-Repo Fallback Limits
+For an initial tutor response, do not dump the whole codebase. Give the project mental model, architecture, key entry points, concise Repository Map, proposed learning roadmap and mode recommendation, then begin the first useful teaching unit. End at one meaningful question or exercise so the user can participate.
 
-No-repo fallback is claim-audit-only. It must not include:
-- repository directory structure
-- core files
-- code entry points
-- concrete data flow or API flow
-- module implementation details
-- code reading route
-- repository evidence matrix
-- verified architecture, deployment, testing, monitoring, or production-readiness claims
+## Evidence Language
 
-Fallback output may include only:
-- claims extracted from user text
-- unverifiable claims
-- likely follow-up questions
-- points requiring repository verification
-- conservative wording suggestions
-- supplementary materials checklist
+For explanations about this repository, label provenance:
 
-## References
+- `[Repo Fact]` — directly verified in repository evidence; cite file path and symbol, plus reliable line/range when available.
+- `[Inference]` — a reasoned architectural interpretation, clearly separated from verified behavior.
+- `[General Concept]` — transferable background knowledge, tied to why it matters here.
 
-Read [references/prompt.md](references/prompt.md) when the user wants a reusable long-form prompt.
+Use the separate claim-strength labels in [evidence_rules.md](evidence_rules.md) for resume, business, ownership, maturity, and impact claims. If evidence is missing or contradictory, say what cannot be confirmed. A manifest dependency, directory name, comment, or generated file alone does not prove a working capability.
 
-Read [references/examples.md](references/examples.md) when you need concrete examples of evidence labels, no-repo fallback, AI-assisted wording, or output structure.
+## Preparation And Safety
+
+- Interview questions must become a real loop: ask, evaluate the user's answer, compare it with repository evidence, teach the gap, ask for a revised answer, then deepen the follow-up.
+- Do not fabricate capability, metrics, scale, launch status, production maturity, technical depth, or personal contribution.
+- Do not disguise AI assistance. Help the user reach genuine, demonstrable understanding and describe their contribution honestly.
+- Do not teach every file evenly. Deprioritize generated, boilerplate, vendored, build, cache, and low-signal files.
+- When repository evidence cannot establish a complete runtime flow, show the longest confirmed segment, label the missing edge, and identify the next evidence or runtime observation needed. Never invent the link.
+
+## Conditional References
+
+- Reusable standalone prompt: [references/prompt.md](references/prompt.md)
+- Compact examples of evidence and interaction shapes: [references/examples.md](references/examples.md)
+- Question categories for exercises, interviews, defense, and reviews: [question_bank.md](question_bank.md)

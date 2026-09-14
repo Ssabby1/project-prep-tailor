@@ -1,55 +1,37 @@
-# Obsidian 使用建议
+# Obsidian 导出建议
 
-`project-prep-tailor` 默认输出 Obsidian-friendly Markdown。
+Obsidian Markdown 在 v2 中是学习结果的导出，不是 self-learning 的默认首轮输出。
 
-## 推荐笔记结构
+## 建议导出时机
 
-可以按项目建立文件夹：
+- 完成一条代表性 Runtime Flow；
+- 完成一个或多个核心模块；
+- 面试前最后复习；
+- 用户主动要求保存学习笔记。
 
-```text
-Projects/
-└── project-name/
-    ├── 00-项目复盘.md
-    ├── 01-面试准备.md
-    ├── 02-问题库.md
-    ├── 03-补学清单.md
-    └── 04-证据矩阵.md
-```
-
-## 推荐标签
+## 推荐结构
 
 ```text
-#project-review
-#interview-prep
-#thesis-defense
-#company-review
-#self-learning
-#evidence-first
+Projects/project-name/
+├── 00-Mental-Model-and-Architecture.md
+├── 01-Runtime-Flow.md
+├── 02-Core-Modules-and-Source-References.md
+├── 03-Mastery-and-Knowledge-Gaps.md
+├── 04-Interview-Readiness.md
+└── 05-Claims-and-Evidence.md
 ```
 
-## 推荐复习方式
+导出应区分：仓库事实、推断、通用概念、助手已经讲过的内容，以及用户已经证明掌握的内容。
 
-优先复习：
-1. 项目一句话理解
-2. 仓库结构与核心文件
-3. 架构、接口流和数据流
-4. Claims 与证据矩阵
-5. 高频问题库
-6. 不建议主动强调的内容
-7. AI 辅助项目理解检查
-
-## Checklist 用法
-
-将最终 checklist 转成 Obsidian 任务：
+## Checklist
 
 ```markdown
-- [ ] 我能 30 秒讲清项目
-- [ ] 我能指出核心入口文件
-- [ ] 我能画出主要数据流
-- [ ] 我能解释一个核心模块
-- [ ] 我知道哪些 claim 不应主动强调
+- [ ] 我能指出程序入口与关键 symbol
+- [ ] 我能不看笔记 trace 一条真实请求
+- [ ] 我能解释核心模块的输入、输出、状态与依赖
+- [ ] 我能定位一个小修改涉及的文件
+- [ ] 我能说明一个失败场景与 Debug 路线
+- [ ] 我知道哪些 claims 证据不足
 ```
 
-## 证据矩阵
-
-建议保留表格，不要改成散文。表格更适合复习时快速判断哪些内容能讲，哪些内容有风险。
+保留证据矩阵与 Mastery Summary 表格，便于复习时快速区分“能讲”“待补学”和“不应声称”。

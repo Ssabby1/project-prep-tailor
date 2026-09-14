@@ -1,60 +1,40 @@
 # Resume Claims
 
-Use this file when resume project experience text is provided.
+Use this file when resume project text is provided. A claim becomes interview-ready only when it is supported and the user can explain the relevant implementation.
 
-## Claim Extraction
+## Extract
 
-Extract claims into categories:
-- project positioning
-- technologies used
-- modules implemented
-- technical responsibilities
-- architecture or design claims
-- performance, business, or user impact
-- deployment or production claims
-- personal contribution claims
+Classify claims about:
 
-## Claim Review With Repository
+- project positioning and technologies;
+- implemented modules and architecture;
+- technical responsibilities and personal contribution;
+- performance, business, user, or model impact;
+- deployment, operations, scale, security, and reliability.
 
-When repository evidence exists, classify each claim:
-- supported by strong evidence
-- partially supported
-- weakly supported
-- only resume-claimed
-- contradicted or risky
+## Review Against Repository
 
-Use this table:
+Use [evidence_rules.md](evidence_rules.md) to classify support. Distinguish repository capability from personal ownership: code may prove that a feature exists but not who designed or implemented it.
 
-| Resume Claim | Repo Evidence | Evidence Level | Interview Advice | Safer Wording |
-|---|---|---|---|---|
+| Resume Claim | Repo Evidence | Evidence Level | User Mastery | Interview Advice | Safer Wording |
+|---|---|---|---|---|---|
 
-## Claim Review Without Repository
+For each important claim identify:
 
-When no repository exists, this is fallback only. Label implementation details as:
-- `仅简历声称`
-- `待仓库验证`
-- `不建议主动强调`
-- `可作为被动回答准备`
+- the decisive source anchors;
+- the runtime flow and concepts the user must explain;
+- likely follow-ups and failure/debugging questions;
+- an active-learning check or small modification that tests understanding;
+- whether the claim is safe to emphasize, should be softened, or should not be used.
 
-Do not turn resume text into verified implementation detail.
+Do not produce polished claim-based answers before the user understands the relevant path. Route gaps to [self_learning.md](self_learning.md) or [interview_mode.md](interview_mode.md), then reassess.
 
-## High-Risk Resume Claims
+## No-Repo Review
 
-Treat these as high risk unless strongly evidenced:
-- "主导架构设计"
-- "独立完成完整系统"
-- "上线生产环境"
-- "支撑大量用户"
-- "性能提升 X%"
-- "准确率提升 X%"
-- "实现完整 RAG / Agent / 推荐系统 / 微服务平台"
-- "负责核心业务闭环"
+Without a repository, this is fallback only. Label implementation details `仅简历声称` or `待仓库验证`, identify likely follow-ups, and provide conservative wording. Do not imply implementation evidence or mastery.
 
-## Interview Preparation
+## High-Risk Claims
 
-For each important claim, prepare:
-- what the interviewer may ask
-- what evidence supports the answer
-- what the user must be able to explain
-- what should be softened
-- what should not be actively emphasized
+Require especially strong evidence and demonstrated understanding for “主导架构设计,” “独立完成完整系统,” “端到端负责,” “上线生产,” high user/traffic scale, quantified performance or accuracy gains, and a complete RAG/agent/recommendation/microservice system.
+
+Use [safety_rules.md](safety_rules.md) for final boundaries.

@@ -43,9 +43,11 @@ Do not claim that the project truly satisfies the JD without repository evidence
 
 ## Role-Relevant Question Generation
 
-Generate questions based on:
+Select questions based on:
 - repeated JD responsibilities
 - technologies required by JD
 - claims in resume
 - repository modules when available
 - gaps between JD and project evidence
+
+In interactive Interview mode, ask one question at a time and follow [interview_mode.md](interview_mode.md). If the user's answer reveals a JD-relevant knowledge gap, return to the decisive repository source and Tutor Mode before helping package the answer. Generate a static question list only for an explicit export.

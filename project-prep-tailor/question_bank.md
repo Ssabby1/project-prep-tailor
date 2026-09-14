@@ -1,73 +1,58 @@
-# Question Bank
+# Question Bank And Exercise Categories
 
-Generate questions that are tied to the user's scenario and available evidence.
+Use these categories to select the next interactive question. Ask one question at a time in tutor or interview mode; do not automatically emit a static bank with model answers.
 
-## General Project Questions
+## Core Project Understanding
 
-- 这个项目解决什么问题？
-- 为什么采用这个技术栈？
-- 核心模块有哪些？各自负责什么？
-- 请求或数据是如何流转的？
-- 哪个模块最复杂？为什么？
-- 如果重新做，你会改哪里？
+- What problem does this project solve, and what is outside its boundary?
+- Where does the program start?
+- Trace a representative request or job from input to response.
+- Which data shape or state object is central?
+- Which modules are core, and why are the others supporting?
 
-## Interview Questions
+## Implementation And Navigation
 
-Include:
-- project overview questions
-- implementation details
-- technical choices
-- failure modes
-- testing and deployment
-- JD-specific questions
-- resume-claim follow-ups
-- AI-assisted development questions when relevant
+- Which `path::symbol` performs the decisive transformation?
+- Where is a dependency registered, and where is it actually called?
+- Where does input validation, persistence, external I/O, or error handling occur?
+- If a handoff fails, which file or runtime evidence would you inspect first?
 
-Use table:
+## Design And Tradeoffs
 
-| Question | Why It May Be Asked | Answer Points | Evidence | Risk |
+- Why is this layer or abstraction useful in the observed flow?
+- Which rationale is proven, and which is inferred?
+- Could a simpler deterministic path replace the current agent/workflow?
+- What relevant alternative would change complexity, reliability, or latency?
+
+## Failure, Testing, And Operations
+
+- What happens for an empty result, invalid input, timeout, or dependency failure?
+- Which tests exercise the main path, and what important behavior remains untested?
+- What does repository evidence establish about deployment, observability, scale, and reliability?
+- How would you reproduce and narrow a concrete failure?
+
+## Modification
+
+- To add or change a small behavior, which files and symbols would need modification?
+- What contract, schema, test, or state transition must remain compatible?
+- How would you verify that the change follows the representative runtime flow?
+
+## AI-Specific Categories
+
+When present in the repository, ask about prompt construction, LLM invocation, structured output, tool registration and execution, agent termination, memory/state, retrieval and context construction, evaluation, retries, streaming, concurrency, and guardrails. Require the project-specific implementation before accepting a general definition.
+
+## Scenario-Specific Categories
+
+- **Interview:** project pitch, runtime, design choices, failure modes, debugging, scale boundaries, JD relevance, resume claims, contribution, and AI assistance.
+- **Thesis defense:** problem definition, method, validation, innovation boundary, limitations, and self-implemented versus third-party parts.
+- **Company review:** scope, responsibility boundary, delivery, decisions, blockers, collaboration, business evidence, and next steps.
+- **Self-learning:** prediction, navigation, explain-back, modification, and debugging checks from [active_learning.md](active_learning.md).
+
+## Evaluation Discipline
+
+Evaluate answers against repository evidence and user context. When an answer is generic, ask for the concrete source and runtime role. When it overclaims, state the boundary. When it reveals a gap, return to Tutor Mode and ask for a revised answer after targeted teaching.
+
+Use a question table only for a requested export:
+
+| Question | Why It Matters | User's Corrected Answer Points | Evidence Anchor | Remaining Risk |
 |---|---|---|---|---|
-
-## Thesis Defense Questions
-
-Include:
-- why this topic
-- problem definition
-- system design
-- implementation method
-- validation method
-- limitations
-- future work
-- self-implemented vs third-party parts
-
-## Company Review Questions
-
-Include:
-- project goal
-- responsibility boundary
-- delivered scope
-- technical tradeoffs
-- risks and blockers
-- collaboration
-- business impact evidence
-- next-step plan
-
-## Self-Learning Questions
-
-Include:
-- where is the entry point?
-- which file should be read first?
-- what data structure is central?
-- how can I run or test the main flow?
-- what small change can I make to prove I understand it?
-
-## Answer Discipline
-
-Every answer point should be connected to:
-- repository evidence
-- resume text
-- JD requirement
-- user-provided context
-- or clearly marked as a learning suggestion
-
-Do not give confident answers for unsupported claims.

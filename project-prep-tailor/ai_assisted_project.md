@@ -1,61 +1,54 @@
 # AI-Assisted And Vibecoding Projects
 
-AI-assisted projects are allowed, but the output must help the user understand and explain the project honestly. Do not disguise AI assistance as unsupported independent engineering depth.
+AI-assisted work is valid, but runnable code is not proof that the user understands, authored, or validated it. The objective is to turn generated code into genuinely understood and honestly explainable work.
 
-## Core Principles
+## Core Rules
 
-- Do not shame AI-assisted work.
-- Do not inflate AI-assisted work.
-- Help the user identify what they truly understand.
-- Separate generated code, user-modified code, and user-understood code when evidence or user context allows.
-- Do not claim independent architecture design unless evidence supports it.
+- Do not shame or inflate AI-assisted work.
+- Separate repository implementation, user-provided contribution context, and demonstrated user understanding.
+- Do not infer which code was generated or personally written unless evidence or user context says so.
+- Do not claim independent architecture, end-to-end ownership, production maturity, or full mastery without support.
+- Prioritize learning the runtime flow and the modules the user plans to discuss.
 
-## Understanding Check
+## Detect Project-Specific AI Capabilities
 
-Include this section for AI-assisted or suspected vibecoding projects:
+Inspect for actual wiring of relevant concepts, including LLM invocation, prompt construction, structured output, function/tool calling, registration and execution, agent loops, planning, reflection, memory/state, RAG, embedding, vector storage, chunking, retrieval, reranking, context construction, MCP, multi-agent orchestration, workflows/state machines, guardrails, evaluation, observability, retries, rate limits, streaming, and concurrency.
 
-| Module | What You Must Be Able To Explain | Evidence | Current Risk | Study Priority |
+Teach only concepts that the repository actually implements or that are necessary to understand a confirmed gap. For each present capability, follow:
+
+```text
+repository implementation → decisive source → general concept
+→ evidenced constraint or inferred rationale → relevant alternative/tradeoff
+```
+
+Do not call an LLM SDK dependency an agent, a vector-store dependency a RAG pipeline, or a tool schema an executed tool flow without verifying the rest of the path.
+
+## Understanding And Ownership Check
+
+Track relevant modules with:
+
+| Module / Claim | Repo Evidence | What The User Can Demonstrate | Current Risk | Next Exercise |
 |---|---|---|---|---|
 
-Ask the user to be able to explain:
-- what problem the module solves
-- where the entry point is
-- what data enters and leaves
-- which dependency is used and why
-- what happens on failure
-- what they changed or understood personally
+Use prediction, code navigation, explain-back, modification planning, and debugging to establish that the user can:
 
-## Honest Interview Wording
+- locate the entry and decisive symbols;
+- trace inputs, outputs, state, and external calls;
+- explain why the capability is needed here;
+- identify failure behavior and the first debugging evidence;
+- propose or perform a small safe modification;
+- name what is absent, incomplete, or unverified.
 
-Good wording:
-- "我使用 AI 辅助完成了初版实现，但我重点理解和调整了..."
-- "这部分代码是基于 AI 辅助生成后，我围绕数据流、异常处理和接口行为做了验证。"
-- "我能解释核心流程，但某些工程化细节还需要继续补充。"
+Do not mark a capability interview-ready until the user can explain it repository-specifically and respect claim boundaries.
 
-Risky wording:
-- "我独立设计并实现了完整架构。"
-- "这个系统已经达到生产级。"
-- "我完整掌握了所有模块。"
-- "性能和稳定性都有明显提升。"
+## Honest Interview Language
 
-Use risky wording only if repository evidence and user context strongly support it.
+Appropriate wording may include:
 
-## Vibecoding Risk Signals
+- “我使用 AI 辅助完成初版实现，之后重点验证并理解了……的运行链。”
+- “我能从 `path::symbol` 解释这一段的数据流、异常路径和我做过的调整。”
+- “当前我已掌握核心流程；部署规模和部分工程化细节没有足够证据，不会扩大描述。”
 
-Mark as higher risk when:
-- code exists but README is thin
-- many dependencies are present but flows are unclear
-- no tests or examples exist
-- project runs but the user cannot explain modules
-- resume claims exceed repository evidence
-- architecture terms appear without implementation support
+Risky wording includes “独立设计完整架构,” “完整掌握所有模块,” “生产级,” “高并发,” “自研模型,” or quantified gains without strong evidence.
 
-## Study Before Claiming
-
-Before the user actively emphasizes a module, they should be able to:
-- locate the core files
-- trace one complete flow
-- explain one design tradeoff
-- describe one bug or edge case
-- modify a small behavior safely
-- state what is not implemented
+The preferred remediation is learning and verification, not cosmetic rewriting.

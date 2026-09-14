@@ -55,9 +55,13 @@ Do not describe a dependency as a completed feature unless code shows it is wire
 
 ## User Benefit
 
-The goal is to make the user better prepared, not more inflated. It is acceptable and useful to say:
+The goal is to make the user genuinely prepared, not more inflated. Do not convert an unexplained module into polished interview language. Route the user back to the relevant source, active exercise, and revised answer before marking it ready.
+
+It is acceptable and useful to say:
 - "这个点现在讲不稳"
 - "需要先补学"
 - "建议被问到再讲"
 - "不建议主动强调"
 - "需要仓库或外部材料验证"
+
+Repository evidence can prove that code exists; it does not by itself prove personal authorship, production use, or user mastery. Treat those as separate claims.

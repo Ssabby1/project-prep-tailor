@@ -1,55 +1,81 @@
-# Self Learning
+# Self-Learning Tutor
 
-Use this file when the user wants to learn a project, understand unfamiliar code, or prepare from zero.
+Use this file when the user wants to learn, trace, modify, or debug an unfamiliar repository, especially from zero.
 
-## Learning-Oriented Output
+## Default Behavior
 
-Include:
-- project mental model
-- prerequisite concepts
-- repository reading order
-- module-by-module learning path
-- important terms
-- hands-on tasks
-- self-check questions
-- what to skip at first
-- what to revisit after understanding the main flow
+Enter progressive interactive teaching. Do not generate a complete learning document in the first response unless the user explicitly asks for an export or one-shot report.
 
-## From-Zero Reading Route
+The default progression is:
 
-Recommended sequence:
-1. README and project purpose
-2. package manifest and runtime
-3. entry point
-4. routing or workflow entry
-5. core business logic
-6. data model and storage
-7. external integrations
-8. tests
-9. deployment and configuration
-10. extension points
+```text
+Reconnaissance → Mental Model → Architecture → Representative Runtime Flow
+→ Learning Roadmap → One Module → Understanding Check → Small Exercise
+→ Next Module → Interview Readiness → Optional Export
+```
 
-## Study Task Format
+If the user's goal is already clear, start immediately. Ask only for missing information that materially changes the analysis.
 
-Use this shape:
+## Session Start
 
-| Step | Goal | Files | What To Understand | Self-Check |
-|---|---|---|---|---|
+After inspecting the repository, the first teaching response should be concise and contain:
 
-## Concept Explanation
+1. a plain-language project mental model;
+2. the evidence-backed architecture and key entry points;
+3. a Repository Map that prioritizes files;
+4. the first representative runtime flow, or the verified segment and missing evidence;
+5. a learning roadmap based on dependencies, runtime order, and conceptual difficulty;
+6. the recommended mode (`Quick Tutor` or `Deep Tutor`), without waiting for confirmation when the request already implies one;
+7. the first bounded teaching unit and one active-learning prompt.
 
-Explain only concepts needed for this project. Avoid generic textbook summaries unless the concept is required to understand the code.
+Do not present every module, every exercise, or final interview script at once.
 
-Good explanations:
-- tied to project files
-- tied to actual flow
-- include what to look for in code
-- include self-check questions
+## Learning Roadmap
+
+Order learning by what unlocks later understanding:
+
+- start with purpose, runtime, central data shapes, and entry points;
+- follow the representative request or workflow path;
+- teach dependencies before their consumers when that reduces conceptual load;
+- delay infrastructure, generated code, uncommon branches, and optional integrations unless they are central to the user's goal;
+- mark interview-critical modules and engineering-support modules separately.
+
+Explain why the order fits this repository, which topics are prerequisites, and what can be skipped initially. Do not use a fixed directory-order checklist.
+
+## Teaching Loop
+
+For each unit:
+
+1. teach the smallest coherent slice using [module_tutor.md](module_tutor.md);
+2. cite repository evidence and separate fact, inference, and general concept;
+3. ask one or two questions or exercises from [active_learning.md](active_learning.md);
+4. wait for the user's answer rather than immediately publishing the solution;
+5. assess correctness, missing links, and evidence grounding;
+6. return to the relevant source code and reteach only the gap;
+7. ask for an explain-back or corrected answer;
+8. update [mastery_tracking.md](mastery_tracking.md) and choose the next unit.
+
+Already demonstrated knowledge should not be repeatedly explained.
+
+## Completion Criteria
+
+The user is ready to move from mastery to preparation when they can, for the relevant core path:
+
+- state the project's problem and boundary;
+- locate the entry point and important symbols;
+- trace one complete runtime flow;
+- explain core inputs, outputs, state changes, and dependencies;
+- distinguish implemented behavior from assumptions;
+- predict at least one failure mode and debugging route;
+- identify the files for a small modification;
+- explain one project-relevant tradeoff.
+
+Do not require perfection across peripheral modules. Record remaining gaps and use them to constrain interview claims.
 
 ## AI-Assisted Projects
 
-For AI-assisted or vibecoded projects, add:
-- which modules the user must explain personally
-- what to run or inspect
-- what to modify as an exercise
-- which claims should not be made until understood
+For AI-assisted or vibecoded work, prioritize the modules the user may claim or be questioned about. Use small prediction, navigation, modification, and debugging exercises to turn generated code into understood code. Apply [ai_assisted_project.md](ai_assisted_project.md); do not treat working output as proof of mastery.
+
+## Export
+
+At the end of a learning cycle—or whenever the user asks—export the accumulated mental model, runtime flow, repository references, mastery summary, exercises, and gaps using [output_contract.md](output_contract.md).
